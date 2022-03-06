@@ -21,6 +21,7 @@
 }
 
 .message__metadata {
+  margin-top: 1px;
   align-self: flex-end;
   display: flex;
   align-items: center;
@@ -30,9 +31,11 @@
 
 .message__time {
   color: rgba(0, 0, 0, 0.25);
+  margin-bottom: 1px;
 }
 
 .message__seenIcon {
+  margin-top: 1px;
   color: #3497f9;
 }
 

@@ -24,9 +24,9 @@ function Message(props) {
             <DoneAllIcon fontSize="smaller" className="message__seenIcon" />
           ) : props.status === "delivered" ? (
             <DoneAllIcon fontSize="smaller" />
-          ) : (
+          ) : props.status === "sent" ? (
             <DoneOutlinedIcon fontSize="smaller" />
-          )}
+          ) : null}
         </span>
       </div>
     </div>

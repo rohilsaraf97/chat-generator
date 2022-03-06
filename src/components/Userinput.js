@@ -1,17 +1,11 @@
 import React, { useState } from "react";
 import "./Userinput.css";
 function Userinput(props) {
-  const [toggle, setToggle] = useState(false);
-
-  const handleClick = () => {
-    setToggle((prev) => !prev);
-  };
-
   const [input, setInput] = useState({
     id: Math.random().toString(),
     text: "",
     time: "",
-    sender: true,
+    sender: false,
     status: "seen",
   });
 
@@ -33,20 +27,23 @@ function Userinput(props) {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    props.onSubmit(input);
-    setToggle(false);
+    console.log(input);
+    input.sender === "true"
+      ? props.onSubmit(input)
+      : props.onSubmit({ ...input, status: "" });
+    props.onCancel();
     setInput({
       id: Math.random().toString(),
       text: "",
       time: "",
-      sender: true,
+      sender: false,
       status: "seen",
     });
   };
 
   return (
     <div className="user-input">
-      {toggle ? (
+      {input.sender === "true" ? (
         <form className="user-input__form" action="" onSubmit={submitHandler}>
           <div className="user-input__controls">
             <div className="user-input__control">
@@ -59,7 +56,20 @@ function Userinput(props) {
                 columns="10"
                 value={input.text}
                 onChange={messageChangeHandler}
+                required
               />
+            </div>
+            <div className="user-input__control">
+              <label htmlFor="">Sender </label>
+              <select
+                name="sender"
+                id=""
+                value={input.sender}
+                onChange={senderChangeHandler}
+              >
+                <option value={true}>Sender</option>
+                <option value={false}>Receiver</option>
+              </select>
             </div>
             <div className="user-input__control">
               <label htmlFor="">Message time </label>
@@ -69,6 +79,7 @@ function Userinput(props) {
                 id=""
                 value={input.time}
                 onChange={timeChangeHandler}
+                required
               />
             </div>
             <div className="user-input__control">
@@ -84,6 +95,31 @@ function Userinput(props) {
                 <option value="sent">Sent</option>
               </select>
             </div>
+          </div>
+          <div className="user-input__buttons">
+            <button type="submit" className="user-input__button">
+              Add Message
+            </button>
+            <button className="user-input__button" onClick={props.onCancel}>
+              Cancel
+            </button>
+          </div>
+        </form>
+      ) : (
+        <form className="user-input__form" action="" onSubmit={submitHandler}>
+          <div className="user-input__controls">
+            <div className="user-input__control">
+              <label htmlFor="">Message text </label>
+              <textarea
+                type="text"
+                name="text"
+                id=""
+                rows="5"
+                columns="10"
+                value={input.text}
+                onChange={messageChangeHandler}
+              />
+            </div>
             <div className="user-input__control">
               <label htmlFor="">Sender </label>
               <select
@@ -96,27 +132,37 @@ function Userinput(props) {
                 <option value={false}>Receiver</option>
               </select>
             </div>
+            <div className="user-input__control">
+              <label htmlFor="">Message time </label>
+              <input
+                type="time"
+                name="time"
+                id=""
+                value={input.time}
+                onChange={timeChangeHandler}
+              />
+            </div>
           </div>
           <div className="user-input__buttons">
             <button type="submit" className="user-input__button">
               Add Message
             </button>
-            <button className="user-input__button" onClick={handleClick}>
+            <button className="user-input__button" onClick={props.onCancel}>
               Cancel
             </button>
           </div>
         </form>
-      ) : (
-        <button
-          className="user-input__button"
-          style={{ margin: "auto" }}
-          onClick={handleClick}
-        >
-          Add New Message
-        </button>
       )}
     </div>
   );
 }
 
 export default Userinput;
+
+// <button
+//   className="user-input__button"
+//   style={{ margin: "auto" }}
+//   onClick={handleClick}
+// >
+//   Add New Message
+// </button>
