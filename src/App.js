@@ -23,8 +23,8 @@ const initialData = [
     id: "m3",
     sender: false,
     text: "Lorem ipsum, dolor sit amet",
-    time: "3:34",
-    status: "sent",
+    time: "3:56",
+    status: "",
   },
   {
     id: "m4",
@@ -37,15 +37,15 @@ const initialData = [
     id: "m5",
     sender: false,
     text: "Lorem ipsum, dolor sit",
-    time: "9:12",
-    status: "seen",
+    time: "6:09",
+    status: "",
   },
   {
     id: "m6",
     sender: false,
     text: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque voluptatibus cumque autem expedita qui at odio fuga sequi dolorem eos!",
-    time: "10:56",
-    status: "seen",
+    time: "7:30",
+    status: "",
   },
 ];
 
@@ -64,15 +64,18 @@ function App() {
 
   const takeScreenshot = () => {
     window.scrollTo(0, 0);
-    html2canvas(document.getElementsByClassName("chat-screen")[0]).then(
-      (canvas) => {
-        let imageURL = canvas.toDataURL("image/jpeg", 0.9);
-        let a = document.createElement("a");
-        a.href = imageURL;
-        a.download = "temply-ss";
-        a.click();
-      }
+    let click_sound = new Audio(
+      "http://www.soundjay.com/mechanical/camera-shutter-click-08.mp3"
     );
+    let chatScreen = document.getElementsByClassName("chat-screen")[0];
+    click_sound.play();
+    html2canvas(chatScreen).then((canvas) => {
+      let imageURL = canvas.toDataURL("image/jpeg", 0.9);
+      let a = document.createElement("a");
+      a.href = imageURL;
+      a.download = "temply-ss";
+      a.click();
+    });
   };
 
   return (

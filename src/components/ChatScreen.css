@@ -1,4 +1,5 @@
 .chat-screen {
+  z-index: 1;
   height: 630px;
   min-width: 290px;
   max-width: 290px;
@@ -8,6 +9,17 @@
   overflow: hidden;
 }
 
+/* .chat-screen_shutter {
+  height: 630px;
+  min-width: 290px;
+  max-width: 290px;
+  margin: 30px 30px;
+}
+
+.chat-screen__shutterOn {
+  z-index: 2;
+  background-color: white;
+} */
 .chat-screen__body {
   overflow-y: scroll;
   flex-grow: 1;

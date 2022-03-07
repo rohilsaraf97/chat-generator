@@ -43,8 +43,8 @@ function Userinput(props) {
 
   return (
     <div className="user-input">
-      {input.sender === "true" ? (
-        <form className="user-input__form" action="" onSubmit={submitHandler}>
+      <form className="user-input__form" action="" onSubmit={submitHandler}>
+        {input.sender === "true" ? (
           <div className="user-input__controls">
             <div className="user-input__control">
               <label htmlFor="">Message text </label>
@@ -60,6 +60,17 @@ function Userinput(props) {
               />
             </div>
             <div className="user-input__control">
+              <label htmlFor="">Message time </label>
+              <input
+                type="time"
+                name="time"
+                id=""
+                value={input.time}
+                onChange={timeChangeHandler}
+                required
+              />
+            </div>
+            <div className="user-input__control">
               <label htmlFor="">Sender </label>
               <select
                 name="sender"
@@ -70,17 +81,6 @@ function Userinput(props) {
                 <option value={true}>Sender</option>
                 <option value={false}>Receiver</option>
               </select>
-            </div>
-            <div className="user-input__control">
-              <label htmlFor="">Message time </label>
-              <input
-                type="time"
-                name="time"
-                id=""
-                value={input.time}
-                onChange={timeChangeHandler}
-                required
-              />
             </div>
             <div className="user-input__control">
               <label htmlFor="">Message Read Status </label>
@@ -96,17 +96,7 @@ function Userinput(props) {
               </select>
             </div>
           </div>
-          <div className="user-input__buttons">
-            <button type="submit" className="user-input__button">
-              Add Message
-            </button>
-            <button className="user-input__button" onClick={props.onCancel}>
-              Cancel
-            </button>
-          </div>
-        </form>
-      ) : (
-        <form className="user-input__form" action="" onSubmit={submitHandler}>
+        ) : (
           <div className="user-input__controls">
             <div className="user-input__control">
               <label htmlFor="">Message text </label>
@@ -121,6 +111,16 @@ function Userinput(props) {
               />
             </div>
             <div className="user-input__control">
+              <label htmlFor="">Message time </label>
+              <input
+                type="time"
+                name="time"
+                id=""
+                value={input.time}
+                onChange={timeChangeHandler}
+              />
+            </div>
+            <div className="user-input__control">
               <label htmlFor="">Sender </label>
               <select
                 name="sender"
@@ -132,27 +132,17 @@ function Userinput(props) {
                 <option value={false}>Receiver</option>
               </select>
             </div>
-            <div className="user-input__control">
-              <label htmlFor="">Message time </label>
-              <input
-                type="time"
-                name="time"
-                id=""
-                value={input.time}
-                onChange={timeChangeHandler}
-              />
-            </div>
           </div>
-          <div className="user-input__buttons">
-            <button type="submit" className="user-input__button">
-              Add Message
-            </button>
-            <button className="user-input__button" onClick={props.onCancel}>
-              Cancel
-            </button>
-          </div>
-        </form>
-      )}
+        )}
+        <div className="user-input__buttons">
+          <button type="submit" className="user-input__button">
+            Add Message
+          </button>
+          <button className="user-input__button" onClick={props.onCancel}>
+            Cancel
+          </button>
+        </div>
+      </form>
     </div>
   );
 }
