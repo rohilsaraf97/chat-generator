@@ -3,6 +3,7 @@ import "./App.css";
 import Userinput from "./components/Userinput";
 import React, { useState } from "react";
 import html2canvas, { saveAs } from "html2canvas";
+import HeaderInput from "./components/HeaderInput";
 
 const initialData = [
   {
@@ -49,17 +50,31 @@ const initialData = [
   },
 ];
 
+const initialHeader = {
+  displayName: "Phineas Flynn",
+  displayStatus: "Tap here to see contact info",
+};
+
 function App() {
   const [data, setData] = useState(initialData);
+  const [header, setHeader] = useState(initialHeader);
+  const [toggle, setToggle] = useState(false);
+  const [toggle1, setToggle1] = useState(false);
   const addNewMessage = (newMessage) => {
     newMessage = { ...newMessage, sender: JSON.parse(newMessage.sender) };
     setData((prev) => [...prev, newMessage]);
   };
 
-  const [toggle, setToggle] = useState(false);
+  const modifyHeader = (newHeader) => {
+    setHeader(newHeader);
+  };
 
   const handleToggle = () => {
     setToggle((prev) => !prev);
+  };
+
+  const handleToggle1 = () => {
+    setToggle1((prev) => !prev);
   };
 
   const takeScreenshot = () => {
@@ -84,9 +99,18 @@ function App() {
       <div className="app__body">
         {toggle ? (
           <Userinput onSubmit={addNewMessage} onCancel={handleToggle} />
+        ) : toggle1 ? (
+          <HeaderInput onSubmit={modifyHeader} onCancel={handleToggle1} />
         ) : (
           <div className="user-input">
             <div className="user-input__buttons">
+              <button
+                type="submit"
+                className="user-input__button"
+                onClick={handleToggle1}
+              >
+                Change Header Info
+              </button>
               <button
                 type="submit"
                 className="user-input__button"
@@ -100,7 +124,7 @@ function App() {
             </div>
           </div>
         )}
-        <ChatScreen data={data} />
+        <ChatScreen data={data} header={header} />
       </div>
     </div>
   );

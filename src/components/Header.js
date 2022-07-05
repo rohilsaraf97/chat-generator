@@ -8,7 +8,7 @@ import PhoneRoundedIcon from "@mui/icons-material/PhoneRounded";
 import ArrowBackIosNewRoundedIcon from "@mui/icons-material/ArrowBackIosNewRounded";
 import "./Header.css";
 
-function Header() {
+function Header(props) {
   return (
     <div className="chat-screen__header">
       <div className="chat-screen__systemInfo">
@@ -25,8 +25,8 @@ function Header() {
           fontSize="medium"
         />
         <div className="chat-screen__nameAndStatus">
-          <p className="chat-screen__name">Martha Craig</p>
-          <p className="chat-screen__status">Tap here for more contact info</p>
+          <p className="chat-screen__name">{props.name}</p>
+          <p className="chat-screen__status">{props.status}</p>
         </div>
         <VideocamOutlinedIcon className="chat-screen__icon" fontSize="medium" />
         <PhoneRoundedIcon className="chat-screen__icon" fontSize="small" />

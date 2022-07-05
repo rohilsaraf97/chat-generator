@@ -8,7 +8,10 @@ function ChatScreen(props) {
   return (
     <div className="chat-body">
       <div className="chat-screen">
-        <Header />
+        <Header
+          name={props.header.displayName}
+          status={props.header.displayStatus}
+        />
         <div className="chat-screen__body">
           {props.data.map((item) => (
             <Message
