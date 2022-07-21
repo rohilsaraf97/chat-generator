@@ -61,3 +61,15 @@ button {
   cursor: pointer;
   text-align: center;
 }
+
+@media only screen and (max-width: 800px) {
+  .user-input__button {
+    width: 80%;
+  }
+  .user-input__buttons {
+    flex-direction: column;
+  }
+  .user-input {
+    width: 70%;
+  }
+}
