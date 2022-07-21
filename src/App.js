@@ -17,7 +17,11 @@ const App = () => {
   const [toggle1, setToggle1] = useState(false);
 
   const addNewMessage = (newMessage) => {
-    newMessage = { ...newMessage, sender: JSON.parse(newMessage.sender) };
+    newMessage = {
+      ...newMessage,
+      sender: JSON.parse(newMessage.sender),
+      id: Math.random().toString(),
+    };
     setData((prev) => [...prev, newMessage]);
   };
 
